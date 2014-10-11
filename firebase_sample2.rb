@@ -1,9 +1,12 @@
 require "firebase"
-firebase_app_name = "igaigatest"
-base_uri = "https://#{firebase_app_name}.firebaseio.com/"
-firebase = Firebase::Client.new(base_uri)
+url = "https://igaiga-sample.firebaseio.com/"
+firebase = Firebase::Client.new(url)
 
-## sample
-h = {apple: 100, grape: 120}
-firebase.set("box1", h)
-p result = firebase.get("box1").body #=> {apple: 100, grape: 120}
+storage_name = "box1" # 自由に命名可能
+h = {apple: 200, grape: 220} # 保存するHash
+
+# Save
+firebase.set(storage_name, h)
+
+# Load
+p result = firebase.get(storage_name).body #=> {apple: 100, grape: 120}
